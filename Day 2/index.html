@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskr — Task Manager</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- ── APP HEADER ── -->
+      <header class="app-header">
+        <h1 class="app-title">Taskr</h1>
+      </header>
+
+      <main>
+
+        <!-- ── ADD TASK FORM ── -->
+        <section class="form-section" aria-label="Add a new task">
+          <div class="form-row">
+            <div class="input-group">
+              <input
+                type="text"
+                id="task-input"
+                class="task-input"
+                placeholder="What needs to be done?"
+                autocomplete="off"
+              />
+              <p class="error-msg" id="error-msg" aria-live="polite"></p>
+            </div>
+
+            <select id="priority-select" class="priority-select" aria-label="Task priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+
+            <button id="add-btn" class="btn btn-primary">Add Task</button>
+          </div>
+        </section>
+
+        <!-- ── TASK LIST AREA ── -->
+        <section class="list-section" aria-label="Task list">
+
+          <!-- counter + filters row -->
+          <div class="list-controls">
+            <p class="task-counter" id="task-counter">0 of 0 tasks completed</p>
+
+            <div class="filters" role="group" aria-label="Filter tasks">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="active">Active</button>
+              <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+          </div>
+
+          <!-- task cards rendered here by JS -->
+          <ul class="task-list" id="task-list" aria-label="Tasks"></ul>
+
+        </section>
+
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
