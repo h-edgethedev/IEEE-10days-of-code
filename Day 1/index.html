@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taskr — Task Management for African Teams</title>
+
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind Play CDN (v3) — reliable browser-based utility generation -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind config: extend theme with custom brand colors -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Montserrat", "sans-serif"],
+            },
+            colors: {
+              brand: {
+                DEFAULT: "#2e7d32",
+                light:   "#e8f5e9",
+                dark:    "#1b5e20",
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom base styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="antialiased">
+
+    <!-- ═══════════════════════════════
+         HEADER / NAV
+    ════════════════════════════════ -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+        <!-- Brand -->
+        <a href="#" class="text-xl font-bold text-brand tracking-tight">
+          Taskr
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="hidden md:flex items-center gap-8 list-none">
+          <li><a href="#features"     class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Features</a></li>
+          <li><a href="#how-it-works" class="text-sm text-gray-500 hover:text-gray-900 transition-colors">How It Works</a></li>
+          <li><a href="#pricing"      class="text-sm text-gray-500 hover:text-gray-900 transition-colors">Pricing</a></li>
+        </ul>
+
+        <!-- CTA + hamburger -->
+        <div class="flex items-center gap-3">
+          <a
+            href="#waitlist"
+            class="bg-brand text-white text-sm font-medium px-5 py-2 rounded-md hover:bg-brand-dark transition-colors"
+          >
+            Join Waitlist
+          </a>
+
+          <button
+            id="menu-btn"
+            class="md:hidden p-1 text-gray-500"
+            aria-label="Toggle menu"
+          >
+            <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+      </nav>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white px-6 py-4">
+        <ul class="flex flex-col gap-4 list-none">
+          <li><a href="#features"     class="text-sm text-gray-500" onclick="closeMobileMenu()">Features</a></li>
+          <li><a href="#how-it-works" class="text-sm text-gray-500" onclick="closeMobileMenu()">How It Works</a></li>
+          <li><a href="#pricing"      class="text-sm text-gray-500" onclick="closeMobileMenu()">Pricing</a></li>
+          <li>
+            <a href="#waitlist" class="block text-sm font-medium text-brand" onclick="closeMobileMenu()">
+              Join Waitlist →
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+
+    <main>
+
+      <!-- ═══════════════════════════════
+           HERO
+      ════════════════════════════════ -->
+      <section id="hero" class="bg-gray-50 py-20 md:py-28">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+
+          <span class="inline-block text-xs font-semibold text-brand bg-brand-light px-3 py-1 rounded-full mb-6 tracking-wide uppercase">
+            Launching in 3 weeks
+          </span>
+
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
+            Task management built for<br class="hidden md:block" /> small African teams
+          </h1>
+
+          <p class="text-lg text-gray-500 max-w-xl mx-auto mb-8">
+            No bloat, no complexity. Taskr helps your team assign tasks, track progress,
+            and stay aligned — even on a bad connection.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="#waitlist"
+              class="bg-brand text-white font-semibold px-7 py-3 rounded-md hover:bg-brand-dark transition-colors text-sm"
+            >
+              Join the Waitlist — It's Free
+            </a>
+            <a
+              href="#how-it-works"
+              class="border border-gray-200 text-gray-900 font-medium px-7 py-3 rounded-md hover:border-gray-400 transition-colors text-sm bg-white"
+            >
+              See How It Works
+            </a>
+          </div>
+
+          <p class="text-xs text-gray-400 mt-5">
+            Free plan available. Paid team plan at ₦5,000/month.
+          </p>
+
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════
+           FEATURES
+      ════════════════════════════════ -->
+      <section id="features" class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+
+          <div class="text-center mb-14">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Everything your team actually needs</h2>
+            <p class="text-gray-500 max-w-lg mx-auto text-sm">
+              We cut out the features nobody uses so you can focus on getting things done.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Assign & prioritize tasks</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Create tasks, assign them to teammates, set due dates and priorities in seconds. No learning curve.
+              </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Mobile-first, offline-ready</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Built to work on any Android phone with limited data. Updates sync automatically when you're back online.
+              </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Team notifications</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Get notified when tasks are assigned, updated, or completed. No more chasing updates on WhatsApp.
+              </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Progress tracking</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                See at a glance what's done, what's in progress, and what's overdue — for the whole team.
+              </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Team workspaces</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Invite up to 15 teammates, organize tasks by project, and keep work separate from personal tasks.
+              </p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
+              <div class="w-10 h-10 bg-brand-light rounded-lg flex items-center justify-center mb-4">
+                <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+              </div>
+              <h3 class="font-semibold text-base mb-2">Simple permissions</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Admins manage the team. Members handle their own tasks. No complicated role setups to configure.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════
+           HOW IT WORKS
+      ════════════════════════════════ -->
+      <section id="how-it-works" class="bg-gray-50 py-20">
+        <div class="max-w-4xl mx-auto px-6">
+
+          <div class="text-center mb-14">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Up and running in minutes</h2>
+            <p class="text-gray-500 text-sm max-w-md mx-auto">
+              No IT setup, no onboarding sessions. Just sign up and start.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                1
+              </div>
+              <h3 class="font-semibold text-base mb-2">Create your workspace</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Sign up free, give your team a name, and invite members via email or a link.
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                2
+              </div>
+              <h3 class="font-semibold text-base mb-2">Add your tasks</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Create tasks, set priorities and deadlines, and assign them to the right people instantly.
+              </p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                3
+              </div>
+              <h3 class="font-semibold text-base mb-2">Track and deliver</h3>
+              <p class="text-sm text-gray-500 leading-relaxed">
+                Everyone sees what they own. You see the full picture. Ship faster, stress less.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════
+           PRICING
+      ════════════════════════════════ -->
+      <section id="pricing" class="py-20">
+        <div class="max-w-4xl mx-auto px-6">
+
+          <div class="text-center mb-14">
+            <h2 class="text-2xl md:text-3xl font-bold mb-3">Simple, honest pricing</h2>
+            <p class="text-gray-500 text-sm max-w-sm mx-auto">
+              Start free. Upgrade when your team is ready.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+
+            <!-- Free plan -->
+            <div class="border border-gray-200 rounded-xl p-7">
+              <h3 class="font-semibold text-base mb-1">Free</h3>
+              <p class="text-gray-500 text-sm mb-5">For individuals and small teams getting started.</p>
+              <div class="text-3xl font-bold mb-6">
+                ₦0 <span class="text-sm font-normal text-gray-500">/ month</span>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-500 mb-7">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Up to 3 team members
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Up to 20 active tasks
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Mobile app access
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Basic notifications
+                </li>
+              </ul>
+              <a
+                href="#waitlist"
+                class="block text-center border border-brand text-brand text-sm font-medium py-2.5 rounded-md hover:bg-brand-light transition-colors"
+              >
+                Get Started Free
+              </a>
+            </div>
+
+            <!-- Team plan -->
+            <div class="border-2 border-brand rounded-xl p-7 relative">
+              <span class="absolute -top-3 left-6 bg-brand text-white text-xs font-semibold px-3 py-1 rounded-full">
+                Most Popular
+              </span>
+              <h3 class="font-semibold text-base mb-1">Team</h3>
+              <p class="text-gray-500 text-sm mb-5">For growing teams that need more power.</p>
+              <div class="text-3xl font-bold mb-6">
+                ₦5,000 <span class="text-sm font-normal text-gray-500">/ month</span>
+              </div>
+              <ul class="space-y-3 text-sm text-gray-500 mb-7">
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Up to 15 team members
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Unlimited tasks
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Offline sync
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Priority & progress reports
+                </li>
+                <li class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-brand shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                  Admin controls
+                </li>
+              </ul>
+              <a
+                href="#waitlist"
+                class="block text-center bg-brand text-white text-sm font-medium py-2.5 rounded-md hover:bg-brand-dark transition-colors"
+              >
+                Join Waitlist
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ═══════════════════════════════
+           WAITLIST
+      ════════════════════════════════ -->
+      <section id="waitlist" class="bg-gray-50 py-20">
+        <div class="max-w-lg mx-auto px-6 text-center">
+
+          <h2 class="text-2xl md:text-3xl font-bold mb-3">Be first in line</h2>
+          <p class="text-gray-500 text-sm mb-8">
+            Taskr launches in 3 weeks. Drop your email and we'll notify you the moment it's live — plus early access perks.
+          </p>
+
+          <form id="waitlist-form" class="flex flex-col sm:flex-row gap-3" novalidate>
+            <input
+              id="email-input"
+              type="email"
+              placeholder="yourname@email.com"
+              class="flex-1 border border-gray-200 rounded-md px-4 py-3 text-sm focus:border-brand focus:ring-2 focus:ring-brand/20 transition"
+              required
+            />
+            <button
+              type="submit"
+              class="bg-brand text-white text-sm font-semibold px-6 py-3 rounded-md hover:bg-brand-dark transition-colors whitespace-nowrap"
+            >
+              Notify Me
+            </button>
+          </form>
+
+          <div id="success-msg" class="hidden mt-5 text-sm text-brand font-medium">
+            ✓ You're on the list! We'll reach out before launch.
+          </div>
+
+          <div id="error-msg" class="hidden mt-5 text-sm text-red-500">
+            Please enter a valid email address.
+          </div>
+
+          <p class="text-xs text-gray-400 mt-5">
+            No spam. Unsubscribe anytime.
+          </p>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- ═══════════════════════════════
+         FOOTER
+    ════════════════════════════════ -->
+    <footer class="border-t border-gray-200 py-8">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-500">
+        <div class="font-semibold text-brand">Taskr</div>
+        <div>Built for African teams. &copy; 2025 Taskr.</div>
+        <div class="flex gap-5">
+          <a href="#" class="hover:text-gray-900 transition-colors">Privacy</a>
+          <a href="mailto:hello@taskr.app" class="hover:text-gray-900 transition-colors">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript — loaded at end of body so the DOM is ready -->
+    <script src="script.js"></script>
+
+  </body>
+</html>
